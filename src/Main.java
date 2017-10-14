@@ -109,7 +109,7 @@ public class Main {
         if(start == 1){  // --> reset head
             head = end_node;
         }
-        if(start > 1 ){ //-- > if the sublinnk is not at the ends
+        if(start > 1 ){ //-- > if the sublinnk is not at the beginning
             before_start_node.next = end_node;
         }
 
