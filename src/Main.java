@@ -127,10 +127,62 @@ public class Main {
         int start = 4;
         int end = 5;
         reverseLinkedList(head,start,end);
-
-
     }
+
+    /**
+     * Question : Given a sentence:  "Hello World", reverse it to "World Hello"
+     *
+     * Approach:
+     *  - Reverse the whole sentence first
+     *  - Create an empty string, where we are going to append the words
+     *  - iterate through the sentence:
+     *      start_index = 0
+     *      end_index = 0
+     *  - When we encounter a space, call a helper function that takes the substring between start and current_index -1
+     *      reverses it and returns it, then append this accompanied of a space, set start index to  current + 1.
+     *  - After the for loop you must set the end_index to size-1
+     * **/
+
+    public static String reverseString(String str){
+        int size = str.length();  // 5
+
+        int len = size / 2; // 2
+
+        StringBuilder temp = new StringBuilder(str);
+
+        size--; // 4
+
+        for(int i= 0; i <= len; i++){
+            Character character = temp.charAt(i); //T
+            temp.setCharAt(i, temp.charAt(size -i));
+            temp.setCharAt(size-i, character);
+        }
+        return temp.toString();
+    }
+
+    public static void reverseSentenceSetup(){
+        String str = "I had I dog when I was a kid";
+
+        String str_reversed = reverseString(str);
+        String solution = "";
+
+        int start_index = 0;
+        for(int i=0; i < str_reversed.length(); i++){
+            if(str_reversed.charAt(i) == ' '){
+                String substr = str_reversed.substring(start_index, i);
+                solution+= reverseString(substr);
+                solution+= " ";
+                start_index = i+1;
+            }
+        }
+        String subt = str_reversed.substring(start_index, str.length());
+        solution += reverseString(subt);
+        print(solution);
+    }
+
     public static void main(String [] args){
         reverseSubLinklistSetup();
+        reverseSentenceSetup();
+        //print(reverseString("TABLE"));
     }
 }
